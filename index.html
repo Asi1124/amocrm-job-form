@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="app.scss">
+</head>
+<body>
+<div class="login">
+  <h1></h1>
+  <form name="amocrm" method="post" action="config.php">
+    <input id="name" type="text" name="name" title="name" placeholder="Name" required >
+    <input id="email" type="email" name="email" title="email" placeholder="Email" required>
+    <input id="tel" type="tel" name="tel" title="tel" placeholder="Phone number" required>
+    <input id="price" type="number" name="price" title="price" placeholder="Price" required>
+    <input type="number" id="time_spent_field" name="time_spent" value="">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+  function trackTimeAndSetFieldValue() {
+    var startTime = new Date().getTime();
+    var timer = setInterval(function() {
+      var currentTime = new Date().getTime();
+      var elapsedTime = currentTime - startTime;
+      if (elapsedTime >= 30000) {
+        clearInterval(timer);
+        document.getElementById('time_spent_field').value = 1;
+      } else {
+        document.getElementById('time_spent_field').value = 0;
+      }
+    }, 1000);
+  }
+  window.onload = trackTimeAndSetFieldValue;
+</script>
+
+</body>
+</html>
